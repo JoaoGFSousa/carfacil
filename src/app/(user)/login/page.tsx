@@ -1,9 +1,15 @@
 "use client";
+import { ISignIn } from "@/components/Types/userAcess.validation";
 import { LoginValidation } from "@/validations/userAcess.validation";
 import { Box, Flex, FormControl, FormLabel, Heading, Input, Link } from "@chakra-ui/react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+
 
 export default function Login() {
-
+    const { register, handleSubmit, formState: { errors } } = useForm<ISignIn>({
+        resolver: yupResolver(LoginValidation),
+    });
     return (
         <FormControl
             display="flex"
@@ -24,8 +30,8 @@ export default function Login() {
             <FormLabel p="20px">Senha</FormLabel>
             <Input placeholder="Digite Sua Senha" color="black" fontWeight="700" border="none" bg="white" />
             <Box>
-                <Heading as="h2" size="md" color="black" >Não Tem Cadastro?</Heading><Link href="/" color="blue" _hover={color:"black"} >Cadastre-se</Link>
-        </Box>
+                <Heading as="h2" size="md" color="black" >Não Tem Cadastro?</Heading><Link href="/" color="blue" _hover={{ color: "black" }} >Cadastre-se</Link>
+            </Box>
         </FormControl >
     );
 }

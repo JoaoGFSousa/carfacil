@@ -16,7 +16,7 @@ const Header: React.FC = () => {
                 <Heading
                     color="White"
                     display={{ base: "none", md: "block" }}>CarFácil</Heading>
-                <StyledLink href="/login">Perfil</StyledLink>
+                <StyledLink href="/login">Login</StyledLink>
                 <StyledLink href="/register">Criar Conta</StyledLink>
                 <Image src="/logo.png" alt="logo"
                     w="150px"
