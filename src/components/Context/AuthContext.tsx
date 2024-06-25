@@ -1,15 +1,26 @@
-import { createContext } from "react";
-import { IAuthContext } from "../Types/context";
+"use client"
+import { createContext, useEffect, useState } from "react";
+import { IProductContext, Iproducts, IproductsCart, IproductsProvider } from "../Types/context";
+import data from "../database/products.json"
 
 
 
 
-const AuthContext = createContext<IAuthContext>({} as IAuthContext)
-// Criando contexto tipando como "IAuthContext" dizendo que pode voltar como string vazia ou interface do IAuthContext
+export const AuthContext = createContext<IproductsProvider>({} as IproductsProvider);
+const AuthProvider = ({ children }: IProductContext) => {
+    const [product, setProduct] = useState<IproductsCart[]>([]);
 
-const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    // Criando um AuthProvider que é uma ferramenta que tem como parametro o children que está tipado como React.ReactNode
-    const router = userRouter();
-}
-// 
+    useEffect(() => { setProduct(data) }, [])
 
+    return (
+        <AuthContext.Provider
+            value={{
+                product,
+            }}>
+            {children}
+        </AuthContext.Provider>
+    )
+
+};
+
+export default AuthProvider;
