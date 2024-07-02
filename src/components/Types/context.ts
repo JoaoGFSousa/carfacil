@@ -30,10 +30,11 @@ export interface IproductsCart {
   img: string;
 }
 
-
 export interface IproductsProvider {
   product: Iproducts[];
+  handleCategoriaClick: (categoria: string) => void;
+  signIn: (values: ISignIn) => void;
 }
-export interface IProductContext{
+export interface IProductContext {
   children: ReactNode;
 }

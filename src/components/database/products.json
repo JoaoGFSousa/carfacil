@@ -72,28 +72,6 @@
     "nome" : "Corolla",
     "marca" : "Toyota",
     "cor" : "Preto",
-    "cv" : 2.8,
-    "combustivel" : "Gasolina",
-    "img" : "toyota-corolla.png"
-},
-{
-    "id" : 8 ,
-    "categoria" : "Sedã",
-    "ano" : 2020,
-    "nome" : "Versa",
-    "marca" : "Nissan",
-    "cor" : "Vermelho",
-    "cv" : 2.4,
-    "combustivel" : "Gasolina",
-    "img" : "nissan-versa.png"
-},
-{
-    "id" : 7,
-    "categoria" : "Sedã",
-    "ano" : 2015,
-    "nome" : "Corolla",
-    "marca" : "Toyota",
-    "cor" : "Preto",
     "cv" : 2.0,
     "combustivel" : "Gasolina",
     "img" : "toyota-corolla.png"
@@ -317,7 +295,7 @@
     "cor" : "Cinza" , 
     "cv" : 1.0 ,
     "combustivel" : "Gasolina" ,
-    "img" : "chevrolet-marajo.png" 
+    "img" : "chevrolet-marajo.jpg" 
 },
 {
     "id" : 28 ,
@@ -328,7 +306,7 @@
     "cor" : "Azul Marinho" , 
     "cv" : 1.0 ,
     "combustivel" : "Gasolina" ,
-    "img" : "volwagen-variant.jpg" 
+    "img" : "volkswagen-variant.jpg" 
 },
 {
     "id" : 29 ,

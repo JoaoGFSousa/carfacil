@@ -4,8 +4,12 @@ import { Box, Flex, Heading, Image } from "@chakra-ui/react";
 import img from "../../../public/logo.png"
 import { StyledLink } from "../Link";
 import * as S from "./header.style";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
+
 
 const Header: React.FC = () => {
+    const { handleCategoriaClick } = useContext(AuthContext);
     return (
         < S.Header>
             <S.HeaderTop>
@@ -25,14 +29,15 @@ const Header: React.FC = () => {
                 />
             </S.HeaderTop>
             <S.HeaderBot>
-                <StyledLink href="/hatch">Hatch</StyledLink>
-                <StyledLink href="/seda">Sedã</StyledLink>
-                <StyledLink href="/suv">SUV</StyledLink>
-                <StyledLink href="/crossover">CrossOver</StyledLink>
-                <StyledLink href="/minivan">MiniVan</StyledLink>
-                <StyledLink href="/picape">Picape</StyledLink>
-                <StyledLink href="statationwagon">Station Wagon</StyledLink>
-                <StyledLink href="cupe">Cupê</StyledLink>
+                <StyledLink href="#" onClick={() => handleCategoriaClick('')} >Todos</StyledLink>
+                <StyledLink href="#" onClick={() => handleCategoriaClick('hatch')}>Hatch</StyledLink>
+                <StyledLink href="#" onClick={() => handleCategoriaClick('Sedã')}>Sedã</StyledLink>
+                <StyledLink href="#" onClick={() => handleCategoriaClick('SUV')}>SUV</StyledLink>
+                <StyledLink href="#" onClick={() => handleCategoriaClick('CrossOver')}>CrossOver</StyledLink>
+                <StyledLink href="#" onClick={() => handleCategoriaClick('MiniVan')}>MiniVan</StyledLink>
+                <StyledLink href="#" onClick={() => handleCategoriaClick('Picape')}>Picape</StyledLink>
+                <StyledLink href="#" onClick={() => handleCategoriaClick('Station Wagon')}>Station Wagon</StyledLink>
+                <StyledLink href="#" onClick={() => handleCategoriaClick('Cupê')}>Cupê</StyledLink>
             </S.HeaderBot>
 
         </S.Header>

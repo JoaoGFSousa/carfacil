@@ -30,7 +30,7 @@ const BannerCards = () => {
                         boxShadow=" rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;"
                     >
                         <Box>
-                            <Image src={product.img} alt="carro" w="250px" h="150px" objectFit="fill" borderTopRadius="8px" />
+                            <Image src={product.img} alt="carro" w="250px" h="150px" objectFit="contain" borderTopRadius="8px" />
                             <Box gap="10px"
                                 display="flex"
                                 flexDir="column"
@@ -62,7 +62,7 @@ const BannerCards = () => {
                                 <Divider />
                             </Box>
                         </Box>
-                        <Button type="submit" bg="gray" _hover={{ bg: "green" }}>Alugar</Button>
+                        <Button type="submit" borderRadius="0 0 7px 7px" bg="gray" _hover={{ bg: "green" }}>Alugar</Button>
                     </Box >
                 ))
             }
