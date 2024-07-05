@@ -1,6 +1,6 @@
+import Providers from "@/app/provider"
+import StyledComponentsRegistry from "@/app/registry"
 import Header from "@/components/Header"
-import Providers from "../provider"
-import StyledComponentsRegistry from "../registry"
 import { GlobalStyle } from "@chakra-ui/react"
 
 export const metadata = {

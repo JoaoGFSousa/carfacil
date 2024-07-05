@@ -2,16 +2,10 @@ import { Box, Flex, Text, Image, background, Button, Divider } from "@chakra-ui/
 import img from "../../../public/argofiat.avif"
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import { Link as ChakraLink } from "@chakra-ui/react";
+import Link from "next/link";
 
-interface IBannerCardsProps {
-    ano: number;
-    nome: string;
-    marca: string;
-    cor: string;
-    cv: string;
-    combustivel: string;
-    img: string;
-}
+
 
 const BannerCards = () => {
     const { product } = useContext(AuthContext)
@@ -47,22 +41,24 @@ const BannerCards = () => {
                                 <Text>
                                     Ano:  {product.ano}
                                 </Text>
-                                <Divider />
-                                <Text>
-                                    Cor:  {product.cor}
-                                </Text>
-                                <Divider />
-                                <Text>
-                                    Cilindradas:  {product.cv}
-                                </Text>
-                                <Divider />
-                                <Text>
-                                    Combustível:  {product.combustivel}
-                                </Text>
-                                <Divider />
                             </Box>
                         </Box>
-                        <Button type="submit" borderRadius="0 0 7px 7px" bg="gray" _hover={{ bg: "green" }}>Alugar</Button>
+                        <Link href={`loja/${product.id}`}>
+                            <ChakraLink
+                                mt="10px"
+                                display="flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                w="100%"
+                                h="40px"
+                                bg="#6B7898"
+                                color="white"
+                                borderRadius="0 0 7px 7px"
+                                _hover={{ bg: "teal.600", textDecoration: 'none' }}
+                            >
+                                Alugar
+                            </ChakraLink>
+                        </Link>
                     </Box >
                 ))
             }

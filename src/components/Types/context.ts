@@ -34,7 +34,17 @@ export interface IproductsProvider {
   product: Iproducts[];
   handleCategoriaClick: (categoria: string) => void;
   signIn: (values: ISignIn) => void;
+  islogged: boolean;
+  logout: () => void;
+  user: IUser;
 }
 export interface IProductContext {
   children: ReactNode;
+}
+
+export interface IproductModal {
+  id: number;
+  img: string;
+  description: string;
+  rating: string;
 }

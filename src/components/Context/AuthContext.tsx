@@ -29,23 +29,26 @@ const AuthProvider = ({ children }: IProductContext) => {
 
     // criando função de signIn
     const [islogged, setIsLogged] = useState<boolean>(false);
-    useEffect(() => { setIsLogged(JSON.parse(localStorage.getItem("is logged") as string)); }, []);
-
     const router = useRouter();
     const [user, setUser] = useState<IUser>({} as IUser);
+
+    useEffect(() => { setIsLogged(JSON.parse(localStorage.getItem("islogged") as string)); }, []);
+
 
 
     const signIn = (value: ISignIn) => {
         return new Promise((resolve) => {
             resolve(true);
 
-            localStorage.setItem("isLogged", "true");
+            localStorage.setItem("islogged", "true");
 
             const response = login(value);
             setUser(response);
             localStorage.setItem("user", JSON.stringify(response));
 
             setIsLogged(true);
+            //  1000 pera setar o timing
+            setTimeout(() => router.push('/'), 1000)
 
         });
     };
@@ -74,6 +77,9 @@ const AuthProvider = ({ children }: IProductContext) => {
                 product: filteredProducts,
                 handleCategoriaClick,
                 signIn,
+                islogged,
+                logout,
+                user
             }}>
             {children}
         </AuthContext.Provider>
