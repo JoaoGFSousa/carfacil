@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ISignIn, IUser } from "./userAcess.validation";
+import { ISignIn, ISignInData, ISignInUpData, IUser } from "./userAcess.validation";
 
 export interface IAuthContext {
   SignIn: (values: ISignIn) => void;
@@ -31,10 +31,9 @@ export interface IproductsCart {
 }
 
 export interface IproductsProvider {
-  product: Iproducts[];
-  handleCategoriaClick: (categoria: string) => void;
-  signIn: (values: ISignIn) => void;
-  islogged: boolean;
+  signIn: (values: ISignInData) => void;
+  signInUp: (values: ISignInUpData) => void;
+  isLogged: boolean;
   logout: () => void;
   user: IUser;
 }

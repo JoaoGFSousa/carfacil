@@ -1,21 +1,25 @@
-import { Box, Flex, Text, Image, background, Button, Divider } from "@chakra-ui/react";
-import img from "../../../public/argofiat.avif"
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../Context/AuthContext";
+'use client'
+import { Box, Text, Image, Divider } from "@chakra-ui/react";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import Link from "next/link";
+import { useQuery } from "react-query";
+import { getProduct } from "@/service/product.service";
+import { Iproducts } from "../Types/context";
 
 
+export interface IBannerCardProps {
+    product: Iproducts[]
+}
 
-const BannerCards = () => {
-    const { product } = useContext(AuthContext)
+const BannerCards: React.FC<IBannerCardProps> = ({ product }) => {
+
     return (
         <>
             {
-                product.map((product) => (
+                product.map((product: Iproducts) => (
 
 
-                    < Box as="li" key={product.id}
+                    <><Box as="li" key={product.id}
                         display="flex"
                         bg="white"
                         flexDirection="column"
@@ -59,10 +63,11 @@ const BannerCards = () => {
                                 Alugar
                             </ChakraLink>
                         </Link>
-                    </Box >
+                    </Box>
+                    </>
                 ))
             }
-        </>
+           </>
     )
 }
 

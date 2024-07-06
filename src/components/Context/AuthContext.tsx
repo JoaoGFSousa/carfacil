@@ -1,58 +1,58 @@
 "use client"
 import { createContext, useEffect, useState } from "react";
-import { IProductContext, Iproducts, IproductsCart, IproductsProvider } from "../Types/context";
-import data from "../database/products.json"
-import { ISignIn, IUser } from "../Types/userAcess.validation";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { IProductContext, IproductsCart, IproductsProvider } from "../Types/context";
+import { ISignInData, ISignInUpData, IUser } from "../Types/userAcess.validation";
 import { useRouter } from "next/navigation";
 import { login } from "@/service/login.service";
-
-
-
+import { api } from "@/service/api";
+import { register } from "@/service/register.service";
+import { toast } from "react-toastify";
 
 // filtro por categoria
 
 
 export const AuthContext = createContext<IproductsProvider>({} as IproductsProvider);
 const AuthProvider = ({ children }: IProductContext) => {
-    const [product, setProduct] = useState<IproductsCart[]>([]);
-    useEffect(() => { setProduct(data) }, [])
-    // seleção de carros
-
-    const [selectedcategory, setSelectedCategory] = useState<string>("");
-
-    const handleCategoriaClick = (categoria: string) => {
-        setSelectedCategory(categoria);
-    }
-
-    const filteredProducts = selectedcategory ? product.filter((prod) => prod.categoria === selectedcategory) : product;
 
     // criando função de signIn
-    const [islogged, setIsLogged] = useState<boolean>(false);
+    const [isLogged, setIsLogged] = useState<boolean>(false);
     const router = useRouter();
     const [user, setUser] = useState<IUser>({} as IUser);
 
-    useEffect(() => { setIsLogged(JSON.parse(localStorage.getItem("islogged") as string)); }, []);
+    useEffect(() => { setIsLogged(JSON.parse(localStorage.getItem("isLogged") as string)); }, []);
 
 
 
-    const signIn = (value: ISignIn) => {
-        return new Promise((resolve) => {
-            resolve(true);
-
-            localStorage.setItem("islogged", "true");
-
-            const response = login(value);
-            setUser(response);
-            localStorage.setItem("user", JSON.stringify(response));
-
-            setIsLogged(true);
-            //  1000 pera setar o timing
-            setTimeout(() => router.push('/'), 1000)
-
-        });
+    const signIn = async (values: ISignInData) => {
+        try {
+            // sempre armazeno resposta da api dentro de uma constante
+            const response = await login(values)
+            console.log(response)
+            setIsLogged(true)
+            localStorage.setItem("isLogged", "true")
+            api.defaults.headers["Authorization"] = `Bearer ${response.acessToken}`
+            localStorage.setItem("@Token", response.acessToken)
+            setUser(response.user)
+            localStorage.setItem("user", JSON.stringify(response.user))
+            toast.success("Login Conclúido")
+            router.push("/")
+        } catch (error) {
+            console.log(error)
+            toast.error("Algo Deu Errado!")
+        }
     };
 
+    const signInUp = async (values: ISignInUpData) => {
+        try {
+            const response = await register(values)
+            toast.success("Cadastro Realizado com sucesso")
+            router.push("/login")
+
+        } catch (error) {
+            console.log(error)
+            toast.error("Algo Deu Errado!")
+        }
+    };
     // Buscar o localstorage
 
     useEffect(() => {
@@ -74,10 +74,9 @@ const AuthProvider = ({ children }: IProductContext) => {
     return (
         <AuthContext.Provider
             value={{
-                product: filteredProducts,
-                handleCategoriaClick,
                 signIn,
-                islogged,
+                signInUp,
+                isLogged,
                 logout,
                 user
             }}>

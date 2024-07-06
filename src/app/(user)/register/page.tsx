@@ -1,20 +1,34 @@
 'use client'
-import { Heading, FormControl, FormLabel, Input, FormErrorMessage, Button, Box } from "@chakra-ui/react";
-import Link from "next/link";
+import { AuthContext } from "@/components/Context/AuthContext";
+import { ISignUp } from "@/components/Types/userAcess.validation";
+import { LoginValidation, RegisterValidation } from "@/validations/userAcess.validation";
+import { Heading, FormControl, FormLabel, Input, FormErrorMessage, Button, Box, Link } from "@chakra-ui/react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
 
 
 
 
 export default function Register() {
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(RegisterValidation),
+    });
+    const { signInUp } = useContext(AuthContext);
+    const handleSignInUp = (values: ISignUp) => {
+        // Desconstruindo o valores de sign up
+        signInUp({ name: values.nome, email: values.email, password: values.senha })
+    }
     return (
         <Box
             as="form"
+            onSubmit={handleSubmit(handleSignInUp)}
             display="flex"
             flexDirection="column"
             bg="rgba(175,180,193,1)"
             pos="relative"
-            w="md"
-            h="md"
+            w="lg"
+            h="lg"
             margin="auto"
             alignItems="center"
             justifyContent="center"
@@ -24,7 +38,20 @@ export default function Register() {
         >
             <Heading as="h2" size="lg" mb="20px">Faça Seu Cadastro</Heading>
 
-            <FormControl mb="20px">
+            <FormControl isInvalid={!!errors.nome} mb="20px">
+                <FormLabel>Nome</FormLabel>
+                <Input
+                    placeholder="Digite seu nome"
+                    color="black"
+                    fontWeight="700"
+                    border="none"
+                    bg="white"
+                    {...register("nome")}
+                />
+                <FormErrorMessage>{errors.nome?.message}</FormErrorMessage>
+            </FormControl>
+
+            <FormControl mb="20px" isInvalid={!!errors.email} >
                 <FormLabel>E-mail</FormLabel>
                 <Input
                     placeholder="Digite Seu email"
@@ -32,20 +59,12 @@ export default function Register() {
                     fontWeight="700"
                     border="none"
                     bg="white"
+                    {...register("email")}
                 />
-                <FormLabel> Confirme seu  E-mail</FormLabel>
-                <Input
-                    placeholder="Digite Seu email"
-                    color="black"
-                    fontWeight="700"
-                    border="none"
-                    bg="white"
-                />
-
-                <FormErrorMessage></FormErrorMessage>
+                <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
             </FormControl>
 
-            <FormControl mb="20px">
+            <FormControl mb="20px" isInvalid={!!errors.senha} >
                 <FormLabel>Senha</FormLabel>
                 <Input
                     type="password"
@@ -54,15 +73,37 @@ export default function Register() {
                     fontWeight="700"
                     border="none"
                     bg="white"
+                    {...register('senha')}
                 />
-                <FormErrorMessage></FormErrorMessage>
+                <FormErrorMessage>{errors.senha?.message}</FormErrorMessage>
             </FormControl>
-
-            <Button type="submit" mb="20px" bg="transparent" _hover={{ bg: "white" }} >Entrar</Button>
+            <FormControl isInvalid={!!errors.confirmacaosenha} >
+                <FormLabel>Confirme Sua Senha</FormLabel>
+                <Input
+                    type="password"
+                    placeholder="Digite Sua Senha"
+                    color="black"
+                    fontWeight="700"
+                    border="none"
+                    bg="white"
+                    {...register('confirmacaosenha')}
+                />
+                <FormErrorMessage>{errors.confirmacaosenha?.message}</FormErrorMessage>
+            </FormControl>
+            <Button type="submit" mb="20px" bg="transparent" _hover={{ bg: "white" }} >Salvar</Button>
 
             <Box textAlign="center">
-                <Heading as="h2" size="md" color="black" mb="10px">Não Tem Cadastro?</Heading>
-                <Link href="/" color="blue" >Cadastre-se</Link>
+                <Link href="/login"
+                    color="black"
+                    h="auto"
+                    w="auto"
+                    bg="transparent"
+                    _hover={{ bg: "black", color: "white" }}
+                    p="10px"
+
+                >
+                    Faça Seu Login
+                </Link>
             </Box>
         </Box>
     )

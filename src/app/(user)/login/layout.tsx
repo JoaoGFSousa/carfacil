@@ -19,7 +19,12 @@ export default function RootLayout({
                     background:
                         "linear-gradient(90deg, rgba(98,113,150,1) 0%, rgba(137,145,165,1) 49%)",
                 }}
-            >
+            ><ToastContainer
+                    position="top-center"
+                    theme="colored"
+                    autoClose={8000}
+                    hideProgressBar
+                />
                 {children}
             </body>
         </html>

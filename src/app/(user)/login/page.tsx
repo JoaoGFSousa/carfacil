@@ -13,10 +13,14 @@ export default function Login() {
         resolver: yupResolver(LoginValidation),
     });
 
+    const handleSignIn = (values: ISignIn) => {
+        // Desconstruindo o valores de sign in
+        signIn({ email: values.email, password: values.senha })
+    }
     return (
         <Box
             as="form"
-            onSubmit={handleSubmit(signIn)}
+            onSubmit={handleSubmit(handleSignIn)}
             display="flex"
             flexDirection="column"
             bg="rgba(175,180,193,1)"
@@ -63,7 +67,7 @@ export default function Login() {
 
             <Box textAlign="center">
                 <Heading as="h2" size="md" color="black" mb="10px">Não Tem Cadastro?</Heading>
-                <Link href="/" color="blue" _hover={{ color: "black" }}>Cadastre-se</Link>
+                <Link href="/register" color="blue" _hover={{ color: "black" }}>Cadastre-se</Link>
             </Box>
         </Box>
     );

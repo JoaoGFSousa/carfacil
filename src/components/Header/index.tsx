@@ -1,18 +1,21 @@
 "use client"
 
-import { Box, Flex, Heading, Image, Text, Button } from "@chakra-ui/react";
-import img from "../../../public/logo.png"
+import { Heading, Image, Text, Button } from "@chakra-ui/react";
 import { StyledLink } from "../Link";
 import * as S from "./header.style";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../Context/AuthContext";
-import { boolean } from "yup";
 import Link from "next/link";
+import { useProduct } from "../Context/ProductContext";
 
 
 const Header: React.FC = () => {
-    const { handleCategoriaClick, islogged, user, logout } = useContext(AuthContext);
+    const { isLogged, user, logout } = useContext(AuthContext);
+    const { setFilteredProduct, products } = useProduct();
 
+    const filterProducts = (category: string) => {
+        setFilteredProduct(category === '' ? products : products.filter(products => products.categoria === category))
+    }
 
     return (
         < S.Header>
@@ -26,14 +29,14 @@ const Header: React.FC = () => {
                 <Heading
                     color="White"
                     display={{ base: "none", md: "block" }}>CarFácil</Heading>
-                {!islogged ? (
+                {!isLogged ? (
                     <>
                         <StyledLink href="/login">Login</StyledLink>
                         <StyledLink href="/register">Criar Conta</StyledLink>
                     </>
                 ) : (
                     <>
-                        <Text color="white" fontSize="20px" >Bem Vindo, {user.nome}</Text>
+                        <Text color="white" fontSize="20px" >Bem Vindo, {user.name}</Text>
                         <Button type="button" onClick={logout} color="white" bg="transparent" _hover={{ color: "white" }} > Sair</Button>
 
                     </>
@@ -48,15 +51,15 @@ const Header: React.FC = () => {
                 </Link>
             </S.HeaderTop>
             <S.HeaderBot>
-                <StyledLink href="#" onClick={() => handleCategoriaClick('')} >Todos</StyledLink>
-                <StyledLink href="#" onClick={() => handleCategoriaClick('hatch')}>Hatch</StyledLink>
-                <StyledLink href="#" onClick={() => handleCategoriaClick('Sedã')}>Sedã</StyledLink>
-                <StyledLink href="#" onClick={() => handleCategoriaClick('SUV')}>SUV</StyledLink>
-                <StyledLink href="#" onClick={() => handleCategoriaClick('CrossOver')}>CrossOver</StyledLink>
-                <StyledLink href="#" onClick={() => handleCategoriaClick('MiniVan')}>MiniVan</StyledLink>
-                <StyledLink href="#" onClick={() => handleCategoriaClick('Picape')}>Picape</StyledLink>
-                <StyledLink href="#" onClick={() => handleCategoriaClick('Station Wagon')}>Station Wagon</StyledLink>
-                <StyledLink href="#" onClick={() => handleCategoriaClick('Cupê')}>Cupê</StyledLink>
+                <StyledLink href="#" onClick={() => filterProducts('')} >Todos</StyledLink>
+                <StyledLink href="#" onClick={() => filterProducts('hatch')}>Hatch</StyledLink>
+                <StyledLink href="#" onClick={() => filterProducts('Sedã')}>Sedã</StyledLink>
+                <StyledLink href="#" onClick={() => filterProducts('SUV')}>SUV</StyledLink>
+                <StyledLink href="#" onClick={() => filterProducts('CrossOver')}>CrossOver</StyledLink>
+                <StyledLink href="#" onClick={() => filterProducts('MiniVan')}>MiniVan</StyledLink>
+                <StyledLink href="#" onClick={() => filterProducts('Picape')}>Picape</StyledLink>
+                <StyledLink href="#" onClick={() => filterProducts('Station Wagon')}>Station Wagon</StyledLink>
+                <StyledLink href="#" onClick={() => filterProducts('Cupê')}>Cupê</StyledLink>
             </S.HeaderBot>
 
         </S.Header >
