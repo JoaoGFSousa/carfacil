@@ -13,21 +13,24 @@ export const HeaderTop = styled.section`
     &:hover {
       color: black;
     }
-
+@media(max-width:545px){
+  display:none;
+}
 `;
 export const HeaderBot = styled.section`
   display: flex;
-  align-itens: center;
+  align-items: center;
   justify-content: space-evenly;
   background-color: ${({ theme }) => theme.colors.head.secondary};
+
   a {
     color: white;
     &:hover {
       color: black;
     }
   }
-  @media (max-width: 450px) {
-    overflow-x: scroll;
-    gap: 30px;
+
+  @media (max-width: 545px) {
+    display: none;
   }
 `;

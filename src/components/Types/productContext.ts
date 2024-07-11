@@ -5,3 +5,4 @@ export interface IProductContextProps {
   filteredProduct: Iproducts[];
   setFilteredProduct: (products: Iproducts[]) => void;
 }
+

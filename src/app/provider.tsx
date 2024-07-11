@@ -9,6 +9,7 @@ import theme from "@/components/Style/Theme";
 import AuthProvider from "@/components/Context/AuthContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import ProductProvider from "@/components/Context/ProductContext";
+import CardProvider from "@/components/Context/CartContext";
 
 export const cache = createCache({ key: "css", prepend: true });
 // para usar o query client
@@ -32,7 +33,9 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                     <QueryClientProvider client={queryClient}>
                         <AuthProvider>
                             <ProductProvider>
+                                <CardProvider>
                                 {children}
+                                </CardProvider>
                             </ProductProvider>
                         </AuthProvider>
                     </QueryClientProvider>

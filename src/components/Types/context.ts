@@ -1,5 +1,10 @@
 import { ReactNode } from "react";
-import { ISignIn, ISignInData, ISignInUpData, IUser } from "./userAcess.validation";
+import {
+  ISignIn,
+  ISignInData,
+  ISignInUpData,
+  IUser,
+} from "./userAcess.validation";
 
 export interface IAuthContext {
   SignIn: (values: ISignIn) => void;
@@ -13,9 +18,6 @@ export interface Iproducts {
   ano: number;
   nome: string;
   marca: string;
-  cor: string;
-  cv: number;
-  combustivel: string;
   img: string;
 }
 export interface IproductsCart {
@@ -24,10 +26,12 @@ export interface IproductsCart {
   ano: number;
   nome: string;
   marca: string;
-  cor: string;
-  cv: number;
-  combustivel: string;
   img: string;
+  description: string;
+  cor: string;
+  cilindradas: number;
+  combustivel: string;
+  preco: number;
 }
 
 export interface IproductsProvider {
@@ -46,4 +50,14 @@ export interface IproductModal {
   img: string;
   description: string;
   rating: string;
+}
+export interface ICartProduct extends IproductsCart {
+  amount: number;
+}
+export interface ICartContext {
+  addProduct: (product: ICartProduct) => void;
+  cart: ICartProduct[];
+  removeProduct: (id: number) => void;
+  totalCart: number;
+  clearCart: () => void;
 }

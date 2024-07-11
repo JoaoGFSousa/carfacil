@@ -30,8 +30,8 @@ const AuthProvider = ({ children }: IProductContext) => {
             console.log(response)
             setIsLogged(true)
             localStorage.setItem("isLogged", "true")
-            api.defaults.headers["Authorization"] = `Bearer ${response.acessToken}`
-            localStorage.setItem("@Token", response.acessToken)
+            api.defaults.headers["Authorization"] = `Bearer ${response.accessToken}`
+            localStorage.setItem("@token", response.accessToken)
             setUser(response.user)
             localStorage.setItem("user", JSON.stringify(response.user))
             toast.success("Login Conclúido")

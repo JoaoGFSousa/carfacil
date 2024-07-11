@@ -1,5 +1,6 @@
 import Providers from "@/app/provider"
 import StyledComponentsRegistry from "@/app/registry"
+import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import { GlobalStyle } from "@chakra-ui/react"
 
@@ -21,6 +22,7 @@ export default function RootLayout({
             <GlobalStyle />
             <Header />
             {children}
+            <Footer />
           </Providers>
         </StyledComponentsRegistry>
       </body>

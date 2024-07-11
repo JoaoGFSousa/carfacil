@@ -18,6 +18,7 @@ export default function RootLayout({
                     display: "flex",
                     background:
                         "linear-gradient(90deg, rgba(98,113,150,1) 0%, rgba(137,145,165,1) 49%)",
+                    padding: "20px"
                 }}
             ><ToastContainer
                     position="top-center"
@@ -27,6 +28,6 @@ export default function RootLayout({
                 />
                 {children}
             </body>
-        </html>
+        </html >
     );
 }

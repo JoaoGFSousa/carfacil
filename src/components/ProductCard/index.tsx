@@ -24,7 +24,7 @@ export const ProductCard: React.FC<IproductsCart> = ({
     nome,
     marca,
     cor,
-    cv,
+    cilindradas,
     combustivel,
     img
 
@@ -50,7 +50,7 @@ export const ProductCard: React.FC<IproductsCart> = ({
                             <Divider />
                             <Text>Cor: {cor}</Text>
                             <Divider />
-                            <Text>Cilindradas: {cv}</Text>
+                            <Text>Cilindradas: {cilindradas}</Text>
                             <Divider />
                             <Text>Combustível: {combustivel}</Text>
                             <Divider />
@@ -75,7 +75,7 @@ export const ProductCard: React.FC<IproductsCart> = ({
                             <Divider />
                             <Text>Cor: {cor}</Text>
                             <Divider />
-                            <Text>Cilindradas: {cv}</Text>
+                            <Text>Cilindradas: {cilindradas}</Text>
                             <Divider />
                             <Text>Combustível: {combustivel}</Text>
                             <Divider />

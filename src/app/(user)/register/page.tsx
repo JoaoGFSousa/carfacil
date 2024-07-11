@@ -90,7 +90,7 @@ export default function Register() {
                 />
                 <FormErrorMessage>{errors.confirmacaosenha?.message}</FormErrorMessage>
             </FormControl>
-            <Button type="submit" mb="20px" bg="transparent" _hover={{ bg: "white" }} >Salvar</Button>
+            <Button type="submit" mb="20px" bg="transparent" _hover={{ bg: "white" }} mt="5px" >Salvar</Button>
 
             <Box textAlign="center">
                 <Link href="/login"
