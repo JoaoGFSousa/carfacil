@@ -2,8 +2,6 @@
 import { Box, Text, Image, Divider } from "@chakra-ui/react";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import Link from "next/link";
-import { useQuery } from "react-query";
-import { getProduct } from "@/service/product.service";
 import { Iproducts } from "../Types/context";
 
 

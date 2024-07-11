@@ -10,8 +10,7 @@ import { useProduct } from "../Context/ProductContext";
 import { IProductResponseProps } from "../Types/cadastroProduto";
 import { useQueryClient, useMutation } from "react-query";
 import { createStore } from "@/service/cadastro.service";
-import { BiSolidCartAlt } from "react-icons/bi";
-import Cart from "../Cart/cart";
+
 
 
 // Certifique-se de importar a função createStore corretamente

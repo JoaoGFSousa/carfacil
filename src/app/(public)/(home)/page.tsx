@@ -1,12 +1,11 @@
 "use client"
 import BannerCards from "@/components/BannerCards";
-import { Box, Button, useDisclosure } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { useProduct } from "@/components/Context/ProductContext";
-import { BiSolidCartAlt } from "react-icons/bi";
 import ReactPaginate from "react-paginate";
 import './pagination.css';
-import FloatingButton from "@/components/CartButton";
+
 
 export default function Home() {
     const { filteredProduct } = useProduct();

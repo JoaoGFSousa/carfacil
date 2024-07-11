@@ -1,4 +1,4 @@
-import Header from "@/components/Header"
+
 import Providers from "../provider"
 import StyledComponentsRegistry from "../registry"
 import { ToastContainer } from "react-toastify"

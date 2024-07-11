@@ -1,14 +1,9 @@
 import {
     Box,
     Button,
-    Card,
-    CardBody,
     Center,
     Divider,
-    Heading,
     Image,
-    Stack,
-    StyleProps,
     Text,
     useDisclosure,
 } from "@chakra-ui/react";
