@@ -1,6 +1,6 @@
 "use client"
 import { createContext, useEffect, useState } from "react";
-import { IProductContext, IproductsCart, IproductsProvider } from "../Types/context";
+import { IProductContext, IproductsProvider } from "../Types/context";
 import { ISignInData, ISignInUpData, IUser } from "../Types/userAcess.validation";
 import { useRouter } from "next/navigation";
 import { login } from "@/service/login.service";

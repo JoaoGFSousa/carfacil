@@ -1,6 +1,6 @@
 
 
-import { createContext, use, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { ICartContext, ICartProduct } from "../Types/context";
 import { useToast } from "@chakra-ui/react";
 

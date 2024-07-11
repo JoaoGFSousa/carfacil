@@ -1,7 +1,7 @@
 'use client'
 import { AuthContext } from "@/components/Context/AuthContext";
 import { ISignUp } from "@/components/Types/userAcess.validation";
-import { LoginValidation, RegisterValidation } from "@/validations/userAcess.validation";
+import { RegisterValidation } from "@/validations/userAcess.validation";
 import { Heading, FormControl, FormLabel, Input, FormErrorMessage, Button, Box, Link } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
