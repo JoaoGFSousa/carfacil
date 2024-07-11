@@ -3,10 +3,12 @@
 
 import { useCard } from "@/components/Context/CartContext";
 import { Box, Button, FormControl, FormLabel, Heading, Input, Stack, useToast, Text } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Checkout() {
     const { cart, totalCart, clearCart } = useCard();
+    const router = useRouter()
     const [form, setForm] = useState({ name: '', email: '', address: '' });
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -36,9 +38,11 @@ export default function Checkout() {
         <Box p={8} h={isSuccess ? '59.5vh' : '85vh'}>
             <Heading as="h2" size="xl" mb={8}>Checkout</Heading>
             {isSuccess ? (
-                <Text color="#586994" fontWeight="bold" mt={4}>
+                <><Text color="#586994" fontWeight="bold" mt={4}>
                     Compra finalizada com sucesso!
                 </Text>
+                    <Button onClick={() => router.push("/")} mt="15px" bg="#586994">Continuar comprando.</Button>
+                </>
             ) : (
                 <Stack spacing={4}>
                     <FormControl id="name">

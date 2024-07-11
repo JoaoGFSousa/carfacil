@@ -31,7 +31,7 @@ export default function Lojas() {
                 borderRadius="lg"
                 overflow="hidden"
                 m={4}
-                h="350px"
+                h="360px"
                 boxShadow="md"
             >
 
@@ -55,7 +55,7 @@ export default function Lojas() {
                     <Text mt={2} color="gray.500">
                         {car.ano} - {car.cor}
                     </Text>
-                    <Text mt={2} fontSize="md" h="130px">
+                    <Text mt={2} fontSize="md" h={{ base: "10px", md: "135px" }}>
                         {car.description}
                     </Text>
                     <Text mt={2} fontSize="lg" color="teal.500" mb="20px">
