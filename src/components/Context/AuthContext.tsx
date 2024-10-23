@@ -18,7 +18,8 @@ const AuthProvider = ({ children }: IProductContext) => {
     const [isLogged, setIsLogged] = useState<boolean>(false);
     const router = useRouter();
     const [user, setUser] = useState<IUser>({} as IUser);
-
+    const[ token,setToken] = useState<string>();
+ 
     useEffect(() => { setIsLogged(JSON.parse(localStorage.getItem("isLogged") as string)); }, []);
 
 
@@ -32,6 +33,7 @@ const AuthProvider = ({ children }: IProductContext) => {
             localStorage.setItem("isLogged", "true")
             api.defaults.headers["Authorization"] = `Bearer ${response.accessToken}`
             localStorage.setItem("@token", response.accessToken)
+            setToken(response.accessToken)
             setUser(response.user)
             localStorage.setItem("user", JSON.stringify(response.user))
             toast.success("Login Conclúido")
@@ -78,7 +80,8 @@ const AuthProvider = ({ children }: IProductContext) => {
                 signInUp,
                 isLogged,
                 logout,
-                user
+                user,
+                token
             }}>
             {children}
         </AuthContext.Provider>

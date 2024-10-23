@@ -40,6 +40,7 @@ export interface IproductsProvider {
   isLogged: boolean;
   logout: () => void;
   user: IUser;
+  token?:string;
 }
 export interface IProductContext {
   children: ReactNode;

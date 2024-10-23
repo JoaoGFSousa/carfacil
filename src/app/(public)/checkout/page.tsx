@@ -2,6 +2,7 @@
 
 
 import { useCard } from "@/components/Context/CartContext";
+import { checkout, order } from "@/service/checkout.service";
 import { Box, Button, FormControl, FormLabel, Heading, Input, Stack, useToast, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -18,20 +19,35 @@ export default function Checkout() {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = () => {
-        setIsLoading(true);
-        setTimeout(() => {
-            clearCart();
-            setIsLoading(false);
-            setIsSuccess(true);
-            toast({
-                title: "Compra realizada com sucesso!",
-                description: "Obrigado por comprar conosco.",
-                status: "success",
-                duration: 5000,
-                isClosable: true,
-            });
-        }, 2000); // Simula uma requisição de 2 segundos
+    const handleSubmit = async () => {
+      setIsLoading(true);
+      
+      try{
+        const orderId = await order(cart);
+        const url = await checkout (orderId);
+        clearCart();
+        setIsSuccess(true);
+
+        toast({
+            title: "Compra realizada com sucesso!",
+            description: "Obrigado por comprar conosco.",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+        });
+        window.open(url, "_blank");
+      }catch(e:any){
+        toast({
+            title: "Oops! algo deu errado",
+            description: `Mensagem do erro ${e.message}`,
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+        });
+        console.error(e);
+      }finally{
+        setIsLoading(false);
+      }
     };
 
     return (
