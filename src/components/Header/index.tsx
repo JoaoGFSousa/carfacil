@@ -18,7 +18,7 @@ import { createStore } from "@/service/cadastro.service";
 const initialStore: IProductResponseProps = { categoria: "", ano: 0, nome: "", marca: "", img: "", description: "", cor: "", cilindradas: 0, combustivel: "", preco: 0 };
 
 const Header: React.FC = () => {
-    const { isLogged, user, logout } = useContext(AuthContext);
+    const { isLogged, user, logout,token } = useContext(AuthContext);
     const { setFilteredProduct, products } = useProduct();
     const queryClient = useQueryClient();
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,9 +28,9 @@ const Header: React.FC = () => {
     const [newStore, setNewStore] = useState<IProductResponseProps>(initialStore);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const { name, value, files } = e.target;
         setNewStore((prevState) => ({
-            ...prevState, [name]: name === "preco" || name === "ano" || name === "cilindradas" ? parseFloat(value) : value
+            ...prevState, [name]: name === "preco" || name === "ano" || name === "cilindradas" ? parseFloat(value) : name === "img" ? files?.[0] : value,
         }));
     };
 
@@ -104,13 +104,13 @@ const Header: React.FC = () => {
                 <S.HeaderBot>
                     <StyledLink href="#" onClick={() => filterProducts('')}>Todos</StyledLink>
                     <StyledLink href="#" onClick={() => filterProducts('hatch')}>Hatch</StyledLink>
-                    <StyledLink href="#" onClick={() => filterProducts('Sedã')}>Sedã</StyledLink>
-                    <StyledLink href="#" onClick={() => filterProducts('SUV')}>SUV</StyledLink>
-                    <StyledLink href="#" onClick={() => filterProducts('CrossOver')}>CrossOver</StyledLink>
-                    <StyledLink href="#" onClick={() => filterProducts('MiniVan')}>MiniVan</StyledLink>
-                    <StyledLink href="#" onClick={() => filterProducts('Picape')}>Picape</StyledLink>
-                    <StyledLink href="#" onClick={() => filterProducts('Station Wagon')}>Station Wagon</StyledLink>
-                    <StyledLink href="#" onClick={() => filterProducts('Cupê')}>Cupê</StyledLink>
+                    <StyledLink href="#" onClick={() => filterProducts('seda')}>Sedã</StyledLink>
+                    <StyledLink href="#" onClick={() => filterProducts('suv')}>SUV</StyledLink>
+                    <StyledLink href="#" onClick={() => filterProducts('crossover')}>CrossOver</StyledLink>
+                    <StyledLink href="#" onClick={() => filterProducts('minivan')}>MiniVan</StyledLink>
+                    <StyledLink href="#" onClick={() => filterProducts('picape')}>Picape</StyledLink>
+                    <StyledLink href="#" onClick={() => filterProducts('station wagon')}>Station Wagon</StyledLink>
+                    <StyledLink href="#" onClick={() => filterProducts('cupe')}>Cupê</StyledLink>
                 </S.HeaderBot>
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
@@ -133,7 +133,7 @@ const Header: React.FC = () => {
                             </FormControl>
                             <FormControl mt={4}>
                                 <FormLabel>Imagem</FormLabel>
-                                <Input name="img" onChange={handleInputChange} />
+                                <Input name="img" onChange={handleInputChange} type="file" />
                             </FormControl>
                             <FormControl mt={4}>
                                 <FormLabel>Ano</FormLabel>
